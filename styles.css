@@ -123,10 +123,59 @@ button { font-family: inherit; cursor: pointer; }
 .calc-panel {
     display: none; max-width: 720px; margin: 0 auto; padding: 32px;
     background: #fff; border: 1px solid #e0e0e0; border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 .calc-panel.active { display: block; }
 .calc-panel h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
 .calc-panel .panel-subtitle { font-size: 14px; color: #555; margin-bottom: 24px; }
+
+/* Enhanced Results */
+.results {
+    margin-top: 24px; padding: 24px; background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
+    border-left: 4px solid #d71e28; border-radius: 8px; display: none;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
+}
+.results.show { display: block; }
+.results h3 { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; }
+.result-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid #e0e0e0;
+}
+.result-item:last-child { border-bottom: none; }
+.result-label { font-size: 14px; color: #555; }
+.result-value { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+.result-highlight { font-size: 36px; font-weight: 700; color: #d71e28; text-align: center; margin: 20px 0; letter-spacing: -0.5px; }
+
+/* Tab Navigation Enhancement */
+.tab-nav {
+    display: flex; gap: 0; margin-bottom: 24px;
+    border-bottom: 2px solid #e0e0e0; max-width: 720px;
+    margin-left: auto; margin-right: auto;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    background: #fff; border-radius: 8px 8px 0 0;
+    padding: 0 8px;
+}
+.tab-btn {
+    padding: 14px 24px; background: none; border: none;
+    font-size: 14px; font-weight: 600; color: #666;
+    cursor: pointer; border-bottom: 3px solid transparent;
+    margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap; flex-shrink: 0;
+}
+.tab-btn:hover { color: #1a1a1a; }
+.tab-btn.active { color: #d71e28; border-bottom-color: #d71e28; }
+
+/* Card Enhancements */
+.calc-card {
+    background: #fff; border: 1px solid #e0e0e0; border-radius: 8px;
+    padding: 32px 24px; text-align: center; display: flex; flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+}
+.calc-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+    border-color: #d71e28;
+}
 
 /* Tab Navigation */
 .tab-nav {
