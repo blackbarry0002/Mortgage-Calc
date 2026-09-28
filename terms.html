@@ -3,63 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Terms of Use - MortgageCalc">
     <title>Terms of Use - MortgageCalc</title>
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif; color: #333; line-height: 1.6; background: #fff; }
-        .header { background: #fff; border-bottom: 1px solid #e0e0e0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-        .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 60px; }
-        .header-logo-text { font-size: 24px; font-weight: 700; color: #d71e28; text-decoration: none; font-family: Georgia, "Times New Roman", serif; }
-        .header-nav { display: flex; gap: 28px; }
-        .header-nav a { color: #333; text-decoration: none; font-size: 14px; }
-        .header-nav a:hover { color: #d71e28; }
-        .content { max-width: 800px; margin: 0 auto; padding: 48px 24px; }
-        h1 { font-size: 32px; color: #1a1a1a; margin-bottom: 24px; }
-        h2 { font-size: 20px; color: #1a1a1a; margin: 32px 0 12px; }
-        p { margin-bottom: 16px; color: #555; }
-        ul { margin: 0 0 16px 24px; color: #555; }
-        li { margin-bottom: 8px; }
-        .footer { background: #1a1a1a; color: #ccc; padding: 40px 24px 24px; font-size: 13px; margin-top: 48px; }
-        .footer-inner { max-width: 1200px; margin: 0 auto; }
-        .footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 24px; }
-        .footer-links a { color: #fff; text-decoration: none; }
-        .footer-links a:hover { text-decoration: underline; }
-        .footer-legal { border-top: 1px solid #333; padding-top: 16px; color: #888; font-size: 12px; }
-    </style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23d71e28' width='100' height='100' rx='10'/><text x='50' y='70' font-size='60' font-weight='bold' fill='white' text-anchor='middle'>M</text></svg>">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-inner">
-            <a href="index.html" class="header-logo-text">MortgageCalc</a>
-            <nav class="header-nav">
+            <div class="header-logo">
+                <a href="index.html" aria-label="MortgageCalc Home Page">
+                    <span class="header-logo-text">MortgageCalc</span>
+                </a>
+            </div>
+            <nav class="header-nav" aria-label="Header Navigation">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="faq.html">FAQ</a>
                 <a href="contact.html">Contact</a>
             </nav>
+            <button class="hamburger" aria-label="Open Menu Navigation" onclick="toggleMobileNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
-    <main class="content">
-        <h1>Terms of Use</h1>
-        <p>Last updated: September 2026</p>
-        <p>By accessing and using MortgageCalc, you agree to the following terms and conditions. Please read them carefully.</p>
-        <h2>Use of Service</h2>
-        <p>MortgageCalc provides online calculators for estimation purposes only. You agree to use this service only for lawful purposes and in accordance with these Terms.</p>
-        <h2>No Financial Advice</h2>
-        <p>The information and calculators provided on this website do not constitute financial, legal, or tax advice. You should consult with a qualified professional before making any financial decisions.</p>
-        <h2>Accuracy of Information</h2>
-        <p>While we strive to provide accurate and up-to-date information, we make no warranties or representations about the completeness, accuracy, or reliability of the information provided.</p>
-        <h2>Intellectual Property</h2>
-        <p>All content on this website, including text, graphics, logos, and software, is the property of MortgageCalc and is protected by copyright and other intellectual property laws.</p>
-        <h2>Limitation of Liability</h2>
-        <p>MortgageCalc shall not be liable for any damages arising from the use of this website or reliance on the information provided. Your use of the service is at your own risk.</p>
-        <h2>Changes to Terms</h2>
-        <p>We reserve the right to modify these Terms at any time. Continued use of the website after changes constitutes acceptance of the new Terms.</p>
-        <h2>Contact</h2>
-        <p>For questions about these Terms, contact us at <a href="mailto:support@mortgagecalc.com">support@mortgagecalc.com</a>.</p>
+    <main id="main-content">
+        <div class="page-title">
+            <h1>Terms of Use</h1>
+        </div>
+        <div style="max-width:800px; margin:0 auto; padding:0 24px 48px;">
+            <p style="color:#555; margin-bottom:24px;">Last updated: September 2026</p>
+            <h2 style="font-size:20px; color:#1a1a1a; margin:32px 0 12px;">Use of Service</h2>
+            <p style="color:#555; margin-bottom:16px;">MortgageCalc provides online calculators for estimation purposes only. You agree to use this service only for lawful purposes and in accordance with these Terms.</p>
+            <h2 style="font-size:20px; color:#1a1a1a; margin:32px 0 12px;">No Financial Advice</h2>
+            <p style="color:#555; margin-bottom:16px;">The information and calculators provided on this website do not constitute financial, legal, or tax advice. You should consult with a qualified professional before making any financial decisions.</p>
+            <h2 style="font-size:20px; color:#1a1a1a; margin:32px 0 12px;">Accuracy of Information</h2>
+            <p style="color:#555; margin-bottom:16px;">While we strive to provide accurate and up-to-date information, we make no warranties or representations about the completeness, accuracy, or reliability of the information provided.</p>
+            <h2 style="font-size:20px; color:#1a1a1a; margin:32px 0 12px;">Intellectual Property</h2>
+            <p style="color:#555; margin-bottom:16px;">All content on this website, including text, graphics, logos, and software, is the property of MortgageCalc and is protected by copyright and other intellectual property laws.</p>
+            <h2 style="font-size:20px; color:#1a1a1a; margin:32px 0 12px;">Limitation of Liability</h2>
+            <p style="color:#555; margin-bottom:16px;">MortgageCalc shall not be liable for any damages arising from the use of this website or reliance on the information provided. Your use of the service is at your own risk.</p>
+            <h2 style="font-size:20px; color:#1a1a1a; margin:32px 0 12px;">Changes to Terms</h2>
+            <p style="color:#555; margin-bottom:16px;">We reserve the right to modify these Terms at any time. Continued use of the website after changes constitutes acceptance of the new Terms.</p>
+            <h2 style="font-size:20px; color:#1a1a1a; margin:32px 0 12px;">Contact</h2>
+            <p style="color:#555;">For questions about these Terms, contact us at <a href="mailto:support@mortgagecalc.com" style="color:#0076a8;">support@mortgagecalc.com</a>.</p>
+        </div>
     </main>
     <footer class="footer">
         <div class="footer-inner">
+            <div class="footer-contact">
+                <h3>Talk to a mortgage consultant</h3>
+                <p><strong>Call us:</strong> 1-800-555-0199</p>
+                <p>Mon &ndash; Fri: 7 am &ndash; 8 pm | Sat: 8 am &ndash; 6 pm Central Time</p>
+            </div>
             <div class="footer-links">
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Use</a>
@@ -70,8 +68,10 @@
             </div>
             <div class="footer-legal">
                 <p>&copy; 2026 MortgageCalc. All rights reserved.</p>
+                <p>Calculators are provided for estimation purposes only and do not constitute financial advice. Consult a qualified mortgage professional for personalized guidance.</p>
             </div>
         </div>
     </footer>
+    <script src="app.js"></script>
 </body>
 </html>

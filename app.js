@@ -1,3 +1,20 @@
+// ===== Mobile Nav Toggle =====
+function toggleMobileNav() {
+    var nav = document.querySelector('.header-nav');
+    if (nav) {
+        nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        nav.style.flexDirection = 'column';
+        nav.style.position = 'absolute';
+        nav.style.top = '60px';
+        nav.style.left = '0';
+        nav.style.right = '0';
+        nav.style.background = '#fff';
+        nav.style.padding = '16px 24px';
+        nav.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+        nav.style.zIndex = '999';
+    }
+}
+
 // ===== Tab Switching =====
 function switchTab(tabName, btn) {
     document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });

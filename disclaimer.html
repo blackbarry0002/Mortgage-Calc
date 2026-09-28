@@ -3,59 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Disclaimer - MortgageCalc">
     <title>Disclaimer - MortgageCalc</title>
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif; color: #333; line-height: 1.6; background: #fff; }
-        .header { background: #fff; border-bottom: 1px solid #e0e0e0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-        .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 60px; }
-        .header-logo-text { font-size: 24px; font-weight: 700; color: #d71e28; text-decoration: none; font-family: Georgia, "Times New Roman", serif; }
-        .header-nav { display: flex; gap: 28px; }
-        .header-nav a { color: #333; text-decoration: none; font-size: 14px; }
-        .header-nav a:hover { color: #d71e28; }
-        .content { max-width: 800px; margin: 0 auto; padding: 48px 24px; }
-        h1 { font-size: 32px; color: #1a1a1a; margin-bottom: 24px; }
-        h2 { font-size: 20px; color: #1a1a1a; margin: 32px 0 12px; }
-        p { margin-bottom: 16px; color: #555; }
-        .disclaimer-box { background: #fff3cd; border-left: 4px solid #f0ad4e; padding: 16px 20px; border-radius: 4px; margin: 24px 0; }
-        .footer { background: #1a1a1a; color: #ccc; padding: 40px 24px 24px; font-size: 13px; margin-top: 48px; }
-        .footer-inner { max-width: 1200px; margin: 0 auto; }
-        .footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 24px; }
-        .footer-links a { color: #fff; text-decoration: none; }
-        .footer-links a:hover { text-decoration: underline; }
-        .footer-legal { border-top: 1px solid #333; padding-top: 16px; color: #888; font-size: 12px; }
-    </style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23d71e28' width='100' height='100' rx='10'/><text x='50' y='70' font-size='60' font-weight='bold' fill='white' text-anchor='middle'>M</text></svg>">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-inner">
-            <a href="index.html" class="header-logo-text">MortgageCalc</a>
-            <nav class="header-nav">
+            <div class="header-logo">
+                <a href="index.html" aria-label="MortgageCalc Home Page">
+                    <span class="header-logo-text">MortgageCalc</span>
+                </a>
+            </div>
+            <nav class="header-nav" aria-label="Header Navigation">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="faq.html">FAQ</a>
                 <a href="contact.html">Contact</a>
             </nav>
+            <button class="hamburger" aria-label="Open Menu Navigation" onclick="toggleMobileNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
-    <main class="content">
-        <h1>Disclaimer</h1>
-        <div class="disclaimer-box">
-            <p><strong>Important:</strong> The calculators and information provided on MortgageCalc are for general informational purposes only and should not be considered financial advice.</p>
+    <main id="main-content">
+        <div class="page-title">
+            <h1>Disclaimer</h1>
         </div>
-        <h2>Estimates Only</h2>
-        <p>All calculations, estimates, and results provided by our tools are approximations based on the inputs you provide. Actual mortgage payments, interest rates, loan terms, and other financial figures may vary significantly.</p>
-        <h2>Not Financial Advice</h2>
-        <p>The content on this website does not constitute financial, investment, legal, or tax advice. You should always consult with a qualified mortgage professional, financial advisor, or other appropriate professional before making any financial decisions.</p>
-        <h2>No Guarantees</h2>
-        <p>We do not guarantee the accuracy, completeness, or reliability of any information or calculations on this website. Your use of this website and reliance on any information is solely at your own risk.</p>
-        <h2>Third-Party Links</h2>
-        <p>This website may contain links to third-party websites. We are not responsible for the content, accuracy, or privacy practices of these external sites.</p>
-        <h2>Contact</h2>
-        <p>If you have questions about this Disclaimer, contact us at <a href="mailto:support@mortgagecalc.com">support@mortgagecalc.com</a>.</p>
+        <div style="max-width:800px; margin:0 auto; padding:0 24px 48px;">
+            <div style="background:#fff3cd; border-left:4px solid #f0ad4e; padding:16px 20px; border-radius:4px; margin:24px 0;">
+                <p style="color:#555; margin:0;"><strong>Important:</strong> The calculators and information provided on MortgageCalc are for general informational purposes only and should not be considered financial advice.</p>
+            </div>
+            <h2 style="font-size:20px; color:#1a1a1a; margin:32px 0 12px;">Estimates Only</h2>
+            <p style="color:#555; margin-bottom:16px;">All calculations, estimates, and results provided by our tools are approximations based on the inputs you provide. Actual mortgage payments, interest rates, loan terms, and other financial figures may vary significantly.</p>
+            <h2 style="font-size:20px; color:#1a1a1a; margin:32px 0 12px;">Not Financial Advice</h2>
+            <p style="color:#555; margin-bottom:16px;">The content on this website does not constitute financial, investment, legal, or tax advice. You should always consult with a qualified mortgage professional, financial advisor, or other appropriate professional before making any financial decisions.</p>
+            <h2 style="font-size:20px; color:#1a1a1a; margin:32px 0 12px;">No Guarantees</h2>
+            <p style="color:#555; margin-bottom:16px;">We do not guarantee the accuracy, completeness, or reliability of any information or calculations on this website. Your use of this website and reliance on any information is solely at your own risk.</p>
+            <h2 style="font-size:20px; color:#1a1a1a; margin:32px 0 12px;">Third-Party Links</h2>
+            <p style="color:#555; margin-bottom:16px;">This website may contain links to third-party websites. We are not responsible for the content, accuracy, or privacy practices of these external sites.</p>
+            <h2 style="font-size:20px; color:#1a1a1a; margin:32px 0 12px;">Contact</h2>
+            <p style="color:#555;">If you have questions about this Disclaimer, contact us at <a href="mailto:support@mortgagecalc.com" style="color:#0076a8;">support@mortgagecalc.com</a>.</p>
+        </div>
     </main>
     <footer class="footer">
         <div class="footer-inner">
+            <div class="footer-contact">
+                <h3>Talk to a mortgage consultant</h3>
+                <p><strong>Call us:</strong> 1-800-555-0199</p>
+                <p>Mon &ndash; Fri: 7 am &ndash; 8 pm | Sat: 8 am &ndash; 6 pm Central Time</p>
+            </div>
             <div class="footer-links">
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Use</a>
@@ -66,8 +66,10 @@
             </div>
             <div class="footer-legal">
                 <p>&copy; 2026 MortgageCalc. All rights reserved.</p>
+                <p>Calculators are provided for estimation purposes only and do not constitute financial advice. Consult a qualified mortgage professional for personalized guidance.</p>
             </div>
         </div>
     </footer>
+    <script src="app.js"></script>
 </body>
 </html>

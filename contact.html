@@ -3,117 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact MCW - Get in touch with our mortgage calculator support team">
-    <title>Contact MCW - Mortgage Calculator</title>
-    <link rel="canonical" href="https://www.mortgagecalculatorwebsite.com/contact.html">
+    <meta name="description" content="Contact MortgageCalc - Get in touch with our support team">
+    <title>Contact - MortgageCalc</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23d71e28' width='100' height='100' rx='10'/><text x='50' y='70' font-size='60' font-weight='bold' fill='white' text-anchor='middle'>M</text></svg>">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header-top">
-            <div class="container">
-                <div class="header-contact">
-                    <a href="tel:+1-800-MCW-CALC" class="contact-item">
-                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.92 7.02C17.45 6.18 16.51 5.55 15.5 5.55c-1.02 0-1.96.63-2.43 1.46C12.27 6.1 11.64 6 11 6c-1.02 0-2.05.16-3.07.46 1.33-2.11 3.53-3.52 6.07-3.52 2.54 0 4.74 1.41 6.07 3.52-.33-.04-.66-.07-1 .02z"/></svg>
-                        1-800-MCW-CALC
-                    </a>
-                    <a href="mailto:support@mcw.com" class="contact-item">
-                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                        support@mcw.com
-                    </a>
-                </div>
+    <header class="header" role="banner">
+        <div class="header-inner">
+            <div class="header-logo">
+                <a href="index.html" aria-label="MortgageCalc Home Page">
+                    <span class="header-logo-text">MortgageCalc</span>
+                </a>
             </div>
-        </div>
-        <div class="header-main">
-            <div class="container">
-                <div class="logo">
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
-                        <rect fill="#d32f2f" width="100" height="100" rx="10"/>
-                        <text x="50" y="70" font-size="60" font-weight="bold" fill="white" text-anchor="middle">M</text>
-                    </svg>
-                    <div class="logo-text-main">
-                        <span class="logo-primary">MCW</span>
-                        <span class="logo-secondary">Mortgage Calculator</span>
-                    </div>
-                </div>
-                <nav class="nav">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="faq.html" class="nav-link">FAQ</a>
-                    <a href="about.html" class="nav-link">About</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </nav>
-            </div>
+            <nav class="header-nav" aria-label="Header Navigation">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="hamburger" aria-label="Open Menu Navigation" onclick="toggleMobileNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
-
-    <main class="main-content" style="display: block;">
-        <div class="calculator-container" style="padding: 3rem 1.5rem; background: var(--bg-white);">
-            <div class="container" style="max-width: 800px;">
-                <h1 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.5rem; text-align: center;">Get in Touch</h1>
-                <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem; font-size: 1.05rem;">We'd love to hear from you. Reach out to us with any questions or feedback about MCW.</p>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
-                    <div style="padding: 1.5rem; background: var(--bg-light); border-radius: 12px; text-align: center;">
-                        <svg style="width: 2.5rem; height: 2.5rem; margin: 0 auto 0.5rem; color: var(--primary-color);" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.92 7.02C17.45 6.18 16.51 5.55 15.5 5.55c-1.02 0-1.96.63-2.43 1.46C12.27 6.1 11.64 6 11 6c-1.02 0-2.05.16-3.07.46 1.33-2.11 3.53-3.52 6.07-3.52 2.54 0 4.74 1.41 6.07 3.52-.33-.04-.66-.07-1 .02z"/>
-                        </svg>
-                        <h3 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.5rem;">Phone</h3>
-                        <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 0.75rem;">Call us during business hours</p>
-                        <a href="tel:+1-800-MCW-CALC" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">1-800-MCW-CALC</a>
-                    </div>
-                    <div style="padding: 1.5rem; background: var(--bg-light); border-radius: 12px; text-align: center;">
-                        <svg style="width: 2.5rem; height: 2.5rem; margin: 0 auto 0.5rem; color: var(--primary-color);" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
-                        <h3 style="color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.5rem;">Email</h3>
-                        <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 0.75rem;">Send us your questions anytime</p>
-                        <a href="mailto:support@mcw.com" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">support@mcw.com</a>
-                    </div>
-                </div>
-
-                <div class="info-box">
-                    <p style="margin: 0;"><strong>Response Time:</strong> We typically respond to all inquiries within 24 business hours. For immediate assistance, please call us directly.</p>
-                </div>
-
-                <div style="margin-top: 2rem; padding: 2rem; background: var(--bg-light); border-radius: 12px; text-align: center;">
-                    <h3 style="color: var(--primary-color); font-size: 1.2rem; margin-bottom: 1rem;">Ready to use MCW?</h3>
-                    <p style="color: var(--text-dark); margin-bottom: 1.5rem;">Return to our home page to access all four premium mortgage calculators.</p>
-                    <a href="index.html" style="display: inline-block; background: var(--primary-color); color: white; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s;">Go Back Home</a>
-                </div>
-            </div>
+    <main id="main-content">
+        <div class="page-title">
+            <h1>Contact Us</h1>
         </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>MCW</h4>
-                    <p>Professional mortgage calculator tools for home buyers and refinancers.</p>
+        <section class="cards-section">
+            <div class="section-title">
+                <div class="section-title-bar"></div>
+                <h2>Get in Touch</h2>
+            </div>
+            <p style="text-align:center; font-size:16px; color:#555; max-width:600px; margin:0 auto; padding:0 24px 32px;">We'd love to hear from you. Reach out to us with any questions or feedback about MortgageCalc.</p>
+            <div class="cards-grid">
+                <div class="calc-card">
+                    <div class="calc-card-title">Phone</div>
+                    <div class="calc-card-desc">Call us during business hours</div>
+                    <a href="tel:+18005550199" class="btn-primary">1-800-555-0199</a>
                 </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="disclaimer.html">Disclaimer</a></li>
-                    </ul>
+                <div class="calc-card">
+                    <div class="calc-card-title">Email</div>
+                    <div class="calc-card-desc">Send us your questions anytime</div>
+                    <a href="mailto:support@mortgagecalc.com" class="btn-primary">support@mortgagecalc.com</a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 MCW Mortgage Calculator. All rights reserved.</p>
-                <p class="disclaimer">MCW provides tools for educational purposes. Not a substitute for professional financial advice.</p>
+        </section>
+        <section class="cards-section" style="padding-top:0;">
+            <div style="max-width:720px; margin:0 auto; padding:32px 24px; background:#f8f9fa; border-radius:8px; border-left:4px solid #d71e28;">
+                <h3 style="font-size:18px; color:#1a1a1a; margin-bottom:12px;">Response Time</h3>
+                <p style="font-size:14px; color:#555; line-height:1.7;">We typically respond to all inquiries within 24 business hours. For immediate assistance, please call us directly.</p>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-contact">
+                <h3>Talk to a mortgage consultant</h3>
+                <p><strong>Call us:</strong> 1-800-555-0199</p>
+                <p>Mon &ndash; Fri: 7 am &ndash; 8 pm | Sat: 8 am &ndash; 6 pm Central Time</p>
+            </div>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="disclaimer.html">Disclaimer</a>
+                <a href="advertising-policy.html">Advertising Policy</a>
+                <a href="sitemap.xml">Sitemap</a>
+                <a href="index.html">Home</a>
+            </div>
+            <div class="footer-legal">
+                <p>&copy; 2026 MortgageCalc. All rights reserved.</p>
+                <p>Calculators are provided for estimation purposes only and do not constitute financial advice. Consult a qualified mortgage professional for personalized guidance.</p>
             </div>
         </div>
     </footer>
+    <script src="app.js"></script>
 </body>
 </html>
