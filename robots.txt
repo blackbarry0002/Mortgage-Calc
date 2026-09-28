@@ -1,0 +1,31 @@
+# MCW Mortgage Calculator - robots.txt
+# Last Updated: September 24, 2024
+
+# Allow all robots
+User-agent: *
+Allow: /
+
+# Disallow admin pages (if any)
+Disallow: /admin/
+Disallow: /admin.html
+
+# Disallow sensitive information
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Sitemap location
+Sitemap: https://www.mortgagecalculatorwebsite.com/sitemap.xml
+
+# Crawl delay (optional - adjust as needed)
+Crawl-delay: 1
+
+# Specific rules for Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Specific rules for Bingbot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculators | MortgageCalc</title>
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+        body {
+            font-family: "Wells Fargo Sans", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333;
+            line-height: 1.5;
+            background: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        a { color: #0076a8; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+        button { font-family: inherit; cursor: pointer; }
+
+        /* ===== Skip Link ===== */
+        .skip-link {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+        .skip-link:focus {
+            position: static;
+            width: auto; height: auto;
+            padding: 8px 16px;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+            background: #d71e28;
+            color: #fff;
+            z-index: 9999;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            height: 60px;
+        }
+        .header-logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .header-logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #d71e28;
+            letter-spacing: -0.5px;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+        .header-nav a {
+            color: #333;
+            font-size: 14px;
+            font-weight: 400;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .header-nav a:hover { color: #d71e28; }
+        .header-nav .search-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px; height: 32px;
+            color: #555;
+        }
+        .header-nav .search-icon:hover { color: #d71e28; }
+        .btn-signon {
+            background: #d71e28;
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 600 !important;
+            font-size: 14px;
+            transition: background 0.15s;
+            border: none;
+        }
+        .btn-signon:hover { background: #b81820; }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 40px; height: 40px;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px; height: 2px;
+            background: #333;
+            transition: all 0.3s;
+        }
+
+        /* ===== Breadcrumb ===== */
+        .breadcrumb {
+            background: #f8f8f8;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .breadcrumb-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 24px;
+        }
+        .breadcrumb ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            font-size: 13px;
+        }
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .breadcrumb a {
+            color: #555;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover { color: #d71e28; }
+        .breadcrumb .sep {
+            color: #999;
+            font-size: 14px;
+        }
+        .breadcrumb .current {
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            padding: 80px 24px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 20px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        .hero-btn {
+            display: inline-block;
+            background: #d71e28;
+            color: #fff !important;
+            padding: 16px 40px;
+            border-radius: 4px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none !important;
+            transition: background 0.15s, transform 0.15s;
+            border: none;
+            box-shadow: 0 4px 16px rgba(215,30,40,0.4);
+        }
+        .hero-btn:hover {
+            background: #b81820;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(215,30,40,0.5);
+        }
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+        }
+        .hero-feature svg {
+            width: 20px;
+            height: 20px;
+            color: #f0ad4e;
+        }
+
+        /* ===== Page Title ===== */
+        .page-title {
+            text-align: center;
+            padding: 40px 24px 16px;
+        }
+        .page-title h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        /* ===== Subheadline ===== */
+        .subheadline {
+            text-align: center;
+            padding: 0 24px 40px;
+            font-size: 18px;
+            color: #555;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* ===== Section Title ===== */
+        .section-title {
+            text-align: center;
+            padding: 0 24px 32px;
+        }
+        .section-title-bar {
+            width: 60px;
+            height: 4px;
+            background: #d71e28;
+            margin: 0 auto 16px;
+            border-radius: 2px;
+        }
+        .section-title h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.3px;
+        }
+
+        /* ===== Calculator Cards ===== */
+        .cards-section {
+            padding: 0 24px 48px;
+        }
+        .cards-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .calc-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 32px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .calc-card:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        .calc-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .calc-card-desc {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .calc-card-use {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+        .calc-card-use strong {
+            display: block;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .calc-card .btn-primary {
+            display: inline-block;
+            background: #d71e28;
+            color: #fff !important;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none !important;
+            transition: background 0.15s;
+            border: none;
+            text-align: center;
+        }
+        .calc-card .btn-primary:hover { background: #b81820; }
+
+        /* ===== Divider ===== */
+        .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 0;
+        }
+
+        /* ===== Calculator Panel ===== */
+        .calc-panel {
+            display: none;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 32px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .calc-panel.active { display: block; }
+        .calc-panel h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .calc-panel .panel-subtitle {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 24px;
+        }
+
+        /* ===== Tab Navigation ===== */
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #e0e0e0;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: color 0.15s, border-color 0.15s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .tab-btn:hover { color: #1a1a1a; }
+        .tab-btn.active {
+            color: #d71e28;
+            border-bottom-color: #d71e28;
+        }
+
+        /* ===== Form Styles ===== */
+        .form-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 0;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 6px;
+        }
+        .form-group label .required { color: #d71e28; }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.15s, box-shadow 0.15s;
+            background: #fff;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0076a8;
+            box-shadow: 0 0 0 3px rgba(0,118,168,0.1);
+        }
+        .form-group .hint {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        /* ===== Results ===== */
+        .results {
+            margin-top: 24px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 4px solid #d71e28;
+            border-radius: 4px;
+            display: none;
+        }
+        .results.show { display: block; }
+        .results h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .result-item:last-child { border-bottom: none; }
+        .result-label { font-size: 14px; color: #555; }
+        .result-value { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+        .result-highlight {
+            font-size: 32px;
+            font-weight: 700;
+            color: #d71e28;
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        /* ===== Amortization Table ===== */
+        .amort-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 13px;
+        }
+        .amort-table th {
+            background: #f5f5f5;
+            padding: 8px 10px;
+            text-align: right;
+            border-bottom: 2px solid #ddd;
+            font-weight: 600;
+        }
+        .amort-table th:first-child { text-align: left; }
+        .amort-table td {
+            padding: 6px 10px;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: right;
+        }
+        .amort-table td:first-child { text-align: left; }
+        .amort-table tr:nth-child(even) { background: #fafafa; }
+        .amort-table-wrapper {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* ===== FAQ Section ===== */
+        .faq-section {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .faq-question {
+            padding: 18px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: color 0.15s;
+        }
+        .faq-question:hover { color: #d71e28; }
+        .faq-question::after {
+            content: "+";
+            font-size: 22px;
+            color: #999;
+            font-weight: 400;
+            transition: transform 0.2s;
+        }
+        .faq-item.open .faq-question::after { content: "\2212"; }
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-answer {
+            padding: 0 0 18px;
+            max-height: 500px;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: #1a1a1a;
+            color: #ccc;
+            padding: 40px 24px 24px;
+            font-size: 13px;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-contact {
+            margin-bottom: 24px;
+        }
+        .footer-contact h3 {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+            margin-bottom: 24px;
+        }
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .footer-links a:hover { text-decoration: underline; }
+        .footer-legal {
+            border-top: 1px solid #333;
+            padding-top: 16px;
+            color: #888;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* ===== Disclaimer ===== */
+        .disclaimer {
+            font-size: 12px;
+            color: #999;
+            margin-top: 16px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* ===== Responsive: Tablet ===== */
+        @media (max-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .header-nav { gap: 20px; }
+        }
+
+        /* ===== Responsive: Mobile ===== */
+        @media (max-width: 768px) {
+            .header-inner { padding: 0 16px; height: 56px; }
+            .header-logo-text { font-size: 20px; }
+            .header-nav { display: none; }
+            .hamburger { display: flex; }
+
+            .hero { padding: 56px 16px; }
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 16px; }
+            .hero-features { gap: 20px; }
+            .hero-feature { font-size: 13px; }
+
+            .page-title { padding: 32px 16px 12px; }
+            .page-title h1 { font-size: 28px; }
+
+            .subheadline { padding: 0 16px 32px; font-size: 16px; }
+
+            .section-title { padding: 0 16px 24px; }
+            .section-title h2 { font-size: 24px; }
+
+            .cards-section { padding: 0 16px 40px; }
+            .cards-grid { grid-template-columns: 1fr; gap: 16px; }
+
+            .calc-card { padding: 24px 20px; }
+
+            .calc-panel { padding: 24px 20px; margin: 0 16px; }
+
+            .form-row { flex-direction: column; gap: 0; }
+
+            .tab-nav { margin: 0 16px 24px; }
+
+            .faq-section { padding: 40px 16px; }
+
+            .footer { padding: 32px 16px 20px; }
+        }
+
+        /* ===== Responsive: Small Mobile ===== */
+        @media (max-width: 480px) {
+            .page-title h1 { font-size: 24px; }
+            .section-title h2 { font-size: 22px; }
+            .result-highlight { font-size: 28px; }
+        }
+
+        /* ===== Print Styles ===== */
+        @media print {
+            .header, .breadcrumb, .tab-nav, .footer, .hamburger { display: none; }
+            .calc-panel { display: block !important; border: none; padding: 0; }
+            .cards-section { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Disable all links except calculator navigation buttons -->
+    <script>
+    (function() {
+        document.addEventListener('click', function(e) {
+            var a = e.target.closest('a');
+            if (a && !a.classList.contains('btn-primary') && !a.classList.contains('promo-cta')) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, true);
+        document.addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }, true);
+    })();
+    </script>
+
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-inner">
+            <div class="header-logo">
+                <a href="#" onclick="return false;" aria-label="MortgageCalc Home Page">
+                    <span class="header-logo-text">MortgageCalc</span>
+                </a>
+            </div>
+            <nav class="header-nav" aria-label="Header Navigation">
+                <a href="#" onclick="return false;">ATMs/Locations</a>
+                <a href="#" onclick="return false;">Help</a>
+                <a href="#" onclick="return false;" lang="es">Espa&ntilde;ol</a>
+                <a href="#" onclick="return false;" class="search-icon" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                </a>
+                <a href="#" onclick="return false;" class="btn-signon">Sign On</a>
+            </nav>
+            <button class="hamburger" aria-label="Open Menu Navigation" onclick="return false;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="breadcrumb-inner">
+            <ul>
+                <li><a href="#" onclick="return false;">Personal</a><span class="sep">&rsaquo;</span></li>
+                <li><a href="#" onclick="return false;">Home Mortgage Loans</a><span class="sep">&rsaquo;</span></li>
+                <li class="current">Mortgage calculators</li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Plan Your Home Purchase With Confidence</h1>
+                <p>Use our free mortgage calculators to estimate payments, determine affordability, and explore refinance options — all in seconds.</p>
+                <a href="#calculators" class="hero-btn">Explore Calculators</a>
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        Free to use
+                    </div>
+                    <div class="hero-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        Instant results
+                    </div>
+                    <div class="hero-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        No sign-up required
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1>Mortgage calculators</h1>
+        </div>
+
+        <!-- Subheadline -->
+        <div class="subheadline">Use our home loan calculators to estimate your monthly payment, see how much home you can afford, and more.</div>
+
+        <!-- Three Calculator Cards -->
+        <section class="cards-section" id="calculators" aria-label="Calculator options">
+            <div class="section-title">
+                <div class="section-title-bar"></div>
+                <h2>Crunch the numbers. Create your plan.</h2>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Qualification Calculator -->
+                <div class="calc-card">
+                    <div class="calc-card-title">Mortgage qualification calculator</div>
+                    <div class="calc-card-desc">You can find out how much you could borrow and receive a customized mortgage estimate in just minutes &mdash; all without affecting your credit score.</div>
+                    <div class="calc-card-use">
+                        <strong>Use this calculator if you are:</strong>
+                        Currently shopping for a home
+                    </div>
+                    <a href="#" class="btn-primary" onclick="showPanel('qualification'); return false;">Calculate your borrowing power</a>
+                </div>
+
+                <!-- Refinance Savings Calculator -->
+                <div class="calc-card">
+                    <div class="calc-card-title">Refinance savings calculator</div>
+                    <div class="calc-card-desc">Enter your current monthly payment and see how it compares to what you would pay if you refinance at today's rates.</div>
+                    <div class="calc-card-use">
+                        <strong>Use this calculator if you are:</strong>
+                        Looking for a lower monthly payment
+                    </div>
+                    <a href="#" class="btn-primary" onclick="showPanel('refinance'); return false;">Calculate your refinance savings</a>
+                </div>
+
+                <!-- Cash-Out Refinance Calculator -->
+                <div class="calc-card">
+                    <div class="calc-card-title">Cash-out refinance calculator</div>
+                    <div class="calc-card-desc">Want to borrow for home improvements or other expenses? See how much you could get with a cash-out refinance.</div>
+                    <div class="calc-card-use">
+                        <strong>Use this calculator if you are:</strong>
+                        Looking to tap into your home equity
+                    </div>
+                    <a href="#" class="btn-primary" onclick="showPanel('cashout'); return false;">Calculate your cash out estimate</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- Monthly Payment Section -->
+        <section class="cards-section" style="padding-top:40px;">
+            <div class="section-title">
+                <div class="section-title-bar"></div>
+                <h2>Estimate your monthly mortgage payment</h2>
+            </div>
+            <p style="text-align:center; font-size:16px; color:#555; max-width:600px; margin:0 auto; padding:0 24px 32px;">Curious how much your monthly mortgage payment may be? Simply fill in the required fields and get an estimate in seconds.</p>
+        </section>
+
+        <!-- Tab Navigation -->
+        <div style="max-width:720px;margin:0 auto;padding:0 24px;">
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="switchTab('monthly', this)">Monthly Payment</button>
+                <button class="tab-btn" onclick="switchTab('qualification', this)">Qualification</button>
+                <button class="tab-btn" onclick="switchTab('refinance', this)">Refinance Savings</button>
+                <button class="tab-btn" onclick="switchTab('cashout', this)">Cash-Out Refinance</button>
+            </div>
+        </div>
+
+        <!-- Monthly Payment Calculator Panel -->
+        <div class="calc-panel active" id="panel-monthly" style="margin-top:24px;">
+            <h2>Monthly Payment Calculator</h2>
+            <p class="panel-subtitle">Fill in the fields below to estimate your monthly mortgage payment.</p>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Home Price <span class="required">*</span></label>
+                    <input type="number" id="mp-homePrice" placeholder="300000" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Down Payment</label>
+                    <input type="number" id="mp-downPayment" placeholder="60000" min="0">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Interest Rate (%) <span class="required">*</span></label>
+                    <input type="number" id="mp-interestRate" placeholder="6.5" min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>Loan Term</label>
+                    <select id="mp-loanTerm">
+                        <option value="30">30 years</option>
+                        <option value="25">25 years</option>
+                        <option value="20">20 years</option>
+                        <option value="15">15 years</option>
+                        <option value="10">10 years</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Annual Property Tax</label>
+                    <input type="number" id="mp-propertyTax" placeholder="3600" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Annual Homeowner's Insurance</label>
+                    <input type="number" id="mp-insurance" placeholder="1200" min="0">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Monthly HOA Fees</label>
+                    <input type="number" id="mp-hoa" placeholder="0" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Mortgage Insurance (PMI)</label>
+                    <input type="number" id="mp-pmi" placeholder="0" min="0">
+                </div>
+            </div>
+
+            <div class="results" id="mp-results">
+                <h3>Your Estimated Monthly Payment</h3>
+                <div class="result-highlight" id="mp-total">$0</div>
+                <div class="result-item">
+                    <span class="result-label">Principal &amp; Interest</span>
+                    <span class="result-value" id="mp-pi">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Property Tax</span>
+                    <span class="result-value" id="mp-tax">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Homeowner's Insurance</span>
+                    <span class="result-value" id="mp-ins">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">HOA Fees</span>
+                    <span class="result-value" id="mp-hoa-res">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Mortgage Insurance</span>
+                    <span class="result-value" id="mp-pmi-res">$0</span>
+                </div>
+            </div>
+
+            <div id="amort-section" style="display:none; margin-top:24px;">
+                <h3 style="font-size:16px; color:#1a1a1a; margin-bottom:12px;">Amortization Schedule</h3>
+                <div class="amort-table-wrapper">
+                    <table class="amort-table" id="amort-table">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Interest</th>
+                                <th>Principal</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="amort-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <p class="disclaimer">Your monthly payment may include additional costs, including HOA fees, condo fees and utilities, which are not included. Loan terms and mortgage interest rates may vary based on credit score and your individual situation.</p>
+        </div>
+
+        <!-- Qualification Calculator Panel -->
+        <div class="calc-panel" id="panel-qualification" style="margin-top:24px;">
+            <h2>Mortgage Qualification Calculator</h2>
+            <p class="panel-subtitle">Find out how much you could borrow based on your income, debts, and down payment.</p>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Annual Gross Income <span class="required">*</span></label>
+                    <input type="number" id="q-annualIncome" placeholder="85000" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Monthly Debt Payments</label>
+                    <input type="number" id="q-monthlyDebt" placeholder="500" min="0">
+                    <span class="hint">Car loans, student loans, credit cards, etc.</span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Down Payment</label>
+                    <input type="number" id="q-downPayment" placeholder="50000" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Interest Rate (%)</label>
+                    <input type="number" id="q-interestRate" placeholder="6.5" min="0" step="0.01">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Loan Term</label>
+                    <select id="q-loanTerm">
+                        <option value="30">30 years</option>
+                        <option value="20">20 years</option>
+                        <option value="15">15 years</option>
+                        <option value="10">10 years</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Credit Score Range</label>
+                    <select id="q-creditScore">
+                        <option value="740">Excellent (740+)</option>
+                        <option value="700">Good (700-739)</option>
+                        <option value="660">Fair (660-699)</option>
+                        <option value="620">Poor (620-659)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Annual Property Tax</label>
+                    <input type="number" id="q-propertyTax" placeholder="3600" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Annual Homeowner's Insurance</label>
+                    <input type="number" id="q-insurance" placeholder="1200" min="0">
+                </div>
+            </div>
+
+            <div class="results" id="q-results">
+                <h3>Your Qualification Estimate</h3>
+                <div class="result-highlight" id="q-maxHomePrice">$0</div>
+                <p style="text-align:center; font-size:13px; color:#666; margin-bottom:16px;">Maximum home price you may qualify for</p>
+                <div class="result-item">
+                    <span class="result-label">Loan Amount</span>
+                    <span class="result-value" id="q-loanAmount">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Estimated Monthly Payment (P&amp;I)</span>
+                    <span class="result-value" id="q-monthlyPI">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Total Monthly Payment (incl. tax &amp; insurance)</span>
+                    <span class="result-value" id="q-totalMonthly">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Debt-to-Income Ratio (DTI)</span>
+                    <span class="result-value" id="q-dti">0%</span>
+                </div>
+            </div>
+
+            <p class="disclaimer">This is an estimate only and does not constitute a loan offer or prequalification. Actual loan amounts and rates depend on credit history, property type, and other factors.</p>
+        </div>
+
+        <!-- Refinance Savings Calculator Panel -->
+        <div class="calc-panel" id="panel-refinance" style="margin-top:24px;">
+            <h2>Refinance Savings Calculator</h2>
+            <p class="panel-subtitle">Enter your current loan details and see how much you could save by refinancing.</p>
+
+            <h3 style="font-size:16px; color:#1a1a1a; margin-bottom:12px;">Current Loan</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Current Loan Balance <span class="required">*</span></label>
+                    <input type="number" id="r-currentBalance" placeholder="250000" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Current Interest Rate (%) <span class="required">*</span></label>
+                    <input type="number" id="r-currentRate" placeholder="7.5" min="0" step="0.01">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Remaining Loan Term</label>
+                    <select id="r-currentTerm">
+                        <option value="30">30 years</option>
+                        <option value="25">25 years</option>
+                        <option value="20">20 years</option>
+                        <option value="15">15 years</option>
+                        <option value="10">10 years</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Monthly Payment (P&amp;I)</label>
+                    <input type="number" id="r-currentMonthly" placeholder="1750" min="0">
+                    <span class="hint">Optional &mdash; will be calculated if left blank</span>
+                </div>
+            </div>
+
+            <h3 style="font-size:16px; color:#1a1a1a; margin: 20px 0 12px;">New Loan</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>New Interest Rate (%) <span class="required">*</span></label>
+                    <input type="number" id="r-newRate" placeholder="6.0" min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>New Loan Term</label>
+                    <select id="r-newTerm">
+                        <option value="30">30 years</option>
+                        <option value="25">25 years</option>
+                        <option value="20">20 years</option>
+                        <option value="15">15 years</option>
+                        <option value="10">10 years</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Closing Costs</label>
+                    <input type="number" id="r-closingCosts" placeholder="5000" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Extra Monthly Payment</label>
+                    <input type="number" id="r-extraPayment" placeholder="0" min="0">
+                    <span class="hint">Optional extra payment toward principal</span>
+                </div>
+            </div>
+
+            <div class="results" id="r-results">
+                <h3>Your Refinance Savings Estimate</h3>
+                <div class="result-item">
+                    <span class="result-label">Current Monthly Payment</span>
+                    <span class="result-value" id="r-oldPayment">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">New Monthly Payment</span>
+                    <span class="result-value" id="r-newPayment">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Monthly Savings</span>
+                    <span class="result-value" id="r-monthlySavings" style="color:#2e7d32;">$0</span>
+                </div>
+                <div class="result-highlight" id="r-totalSavings">$0</div>
+                <p style="text-align:center; font-size:13px; color:#666; margin-bottom:16px;">Total savings over the life of the loan</p>
+                <div class="result-item">
+                    <span class="result-label">Break-even Point</span>
+                    <span class="result-value" id="r-breakeven">0 months</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Total Interest (Current Loan)</span>
+                    <span class="result-value" id="r-oldInterest">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Total Interest (New Loan)</span>
+                    <span class="result-value" id="r-newInterest">$0</span>
+                </div>
+            </div>
+
+            <p class="disclaimer">This refinance calculator is intended to provide an estimate only. Actual savings depend on many factors including credit score, loan-to-value ratio, and market conditions.</p>
+        </div>
+
+        <!-- Cash-Out Refinance Calculator Panel -->
+        <div class="calc-panel" id="panel-cashout" style="margin-top:24px;">
+            <h2>Cash-Out Refinance Calculator</h2>
+            <p class="panel-subtitle">See how much cash you could access through a cash-out refinance.</p>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Current Home Value <span class="required">*</span></label>
+                    <input type="number" id="c-homeValue" placeholder="400000" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Current Mortgage Balance <span class="required">*</span></label>
+                    <input type="number" id="c-currentBalance" placeholder="200000" min="0">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Current Interest Rate (%)</label>
+                    <input type="number" id="c-currentRate" placeholder="5.0" min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>New Interest Rate (%)</label>
+                    <input type="number" id="c-newRate" placeholder="6.5" min="0" step="0.01">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>New Loan Term</label>
+                    <select id="c-newTerm">
+                        <option value="30">30 years</option>
+                        <option value="25">25 years</option>
+                        <option value="20">20 years</option>
+                        <option value="15">15 years</option>
+                        <option value="10">10 years</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Max Loan-to-Value (LTV)</label>
+                    <select id="c-maxLTV">
+                        <option value="0.80" selected>80%</option>
+                        <option value="0.85">85%</option>
+                        <option value="0.90">90%</option>
+                        <option value="0.95">95%</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Closing Costs (%)</label>
+                    <input type="number" id="c-closingCostsPct" placeholder="3" min="0" step="0.1">
+                    <span class="hint">Typical: 2-5% of loan amount</span>
+                </div>
+                <div class="form-group">
+                    <label>Cash Needed for Project</label>
+                    <input type="number" id="c-cashNeeded" placeholder="50000" min="0">
+                    <span class="hint">Optional &mdash; for comparison</span>
+                </div>
+            </div>
+
+            <div class="results" id="c-results">
+                <h3>Your Cash-Out Refinance Estimate</h3>
+                <div class="result-item">
+                    <span class="result-label">Current Home Equity</span>
+                    <span class="result-value" id="c-equity">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Maximum Loan Amount (at <span id="c-ltv-display">80%</span> LTV)</span>
+                    <span class="result-value" id="c-maxLoan">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Closing Costs (est.)</span>
+                    <span class="result-value" id="c-closingCosts">$0</span>
+                </div>
+                <div class="result-highlight" id="c-cashAvailable">$0</div>
+                <p style="text-align:center; font-size:13px; color:#666; margin-bottom:16px;">Estimated cash available after paying off current mortgage and closing costs</p>
+                <div class="result-item">
+                    <span class="result-label">New Monthly Payment (P&amp;I)</span>
+                    <span class="result-value" id="c-newPayment">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Current Monthly Payment (P&amp;I)</span>
+                    <span class="result-value" id="c-oldPayment">$0</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Monthly Payment Change</span>
+                    <span class="result-value" id="c-paymentChange">$0</span>
+                </div>
+            </div>
+
+            <p class="disclaimer">Cash-out refinance proceeds may be subject to tax implications. Consult a tax advisor. The actual loan amount depends on credit score, income, and other factors.</p>
+        </div>
+
+        <!-- Importance Section -->
+        <section class="cards-section" style="padding-top:48px;">
+            <div class="section-title">
+                <div class="section-title-bar"></div>
+                <h2>The importance of home loan calculators</h2>
+            </div>
+            <p style="text-align:center; font-size:16px; color:#555; max-width:600px; margin:0 auto; padding:0 24px;">Before you buy, you can view your estimated home price and monthly payment based on your location, household income, monthly debt, and down payment amount.</p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="section-title">
+                <div class="section-title-bar"></div>
+                <h2>Home loan FAQs</h2>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">What are the benefits of a mortgage calculator?</div>
+                <div class="faq-answer">
+                    <p>Mortgage calculators can show you your potential monthly mortgage payment and even help you get prequalified &mdash; all you need to do is input a few criteria, such as home price, location, and income details. Having this information can help you feel more confident in your home search.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">How do I estimate my monthly mortgage payment?</div>
+                <div class="faq-answer">
+                    <p>Your monthly mortgage payment consists of principal, interest, taxes, insurance, and possibly HOA fees and mortgage insurance. Use our monthly payment calculator above by entering your home price, down payment, interest rate, and loan term to get an instant estimate.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">What are the benefits of getting prequalified?</div>
+                <div class="faq-answer">
+                    <p>Mortgage prequalification is a simple process that uses your income, debt, and credit information to let you know how much you may be able to borrow. Getting prequalified before you shop for homes can help you focus your search, move forward confidently, and know your options.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">What's the difference between prequalification and preapproval?</div>
+                <div class="faq-answer">
+                    <p>Neither comes with any fees or obligations, and neither is a commitment to lend. Both provide an estimate of how much you could borrow. The key difference is that a preapproval is a more accurate and reliable estimate based on a more complete view of your credit, as it requires a "hard" credit inquiry.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">How much home can I afford?</div>
+                <div class="faq-answer">
+                    <p>Many people start by determining what they can afford as a monthly payment. A common starting point is to calculate 25% of your gross monthly income to help determine a manageable monthly mortgage payment. Use our qualification calculator above for a personalized estimate.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">How are interest rates determined?</div>
+                <div class="faq-answer">
+                    <p>Mortgage interest rates are influenced by the overall economy, the Federal Reserve's policies, inflation, and bond markets. Your individual rate is also affected by your credit score, loan-to-value ratio, loan term, and loan type.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">What other costs are part of my mortgage?</div>
+                <div class="faq-answer">
+                    <p>Beyond principal and interest, your monthly payment may include property taxes, homeowner's insurance, mortgage insurance (PMI), and HOA dues. Closing costs at the time of purchase can include origination fees, appraisal fees, title insurance, and prepaid items.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">How does my down payment change my monthly mortgage cost?</div>
+                <div class="faq-answer">
+                    <p>A larger down payment reduces your loan amount, which lowers your monthly payment. It can also help you avoid mortgage insurance (PMI) if you put down 20% or more, and may qualify you for a better interest rate.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-contact">
+                <h3>Talk to a mortgage consultant</h3>
+                <p><strong>Call us:</strong> 1-888-446-2350</p>
+                <p>Mon &ndash; Fri: 7 am &ndash; 8 pm | Sat: 8 am &ndash; 6 pm Central Time</p>
+            </div>
+            <div class="footer-links">
+                <a href="#" onclick="return false;">Privacy, Cookies, Security &amp; Legal</a>
+                <a href="#" onclick="return false;">Do Not Sell or Share My Personal Information</a>
+                <a href="#" onclick="return false;">Notice of Data Collection</a>
+                <a href="#" onclick="return false;">General Terms of Use</a>
+                <a href="#" onclick="return false;">Report Fraud</a>
+                <a href="#" onclick="return false;">Sitemap</a>
+                <a href="#" onclick="return false;">Home</a>
+            </div>
+            <div class="footer-legal">
+                <p>MortgageCalc. All rights reserved.</p>
+                <p>Calculators are provided for estimation purposes only and do not constitute financial advice. Consult a qualified mortgage professional for personalized guidance.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // ===== Tab Switching =====
+    function switchTab(tabName, btn) {
+        // Update tab buttons
+        document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        // Show corresponding panel
+        showPanel(tabName);
+    }
+
+    function showPanel(panelName) {
+        document.querySelectorAll('.calc-panel').forEach(function(p) { p.classList.remove('active'); });
+        var panel = document.getElementById('panel-' + panelName);
+        if (panel) panel.classList.add('active');
+        // Scroll to panel
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ===== FAQ Toggle =====
+    function toggleFaq(el) {
+        var item = el.parentElement;
+        item.classList.toggle('open');
+    }
+
+    // ===== Format Currency =====
+    function fmt(val) {
+        return '$' + Math.round(val).toLocaleString('en-US');
+    }
+
+    // ===== Mortgage Payment Calculation =====
+    function calcMonthly() {
+        var homePrice = parseFloat(document.getElementById('mp-homePrice').value) || 0;
+        var downPayment = parseFloat(document.getElementById('mp-downPayment').value) || 0;
+        var rate = parseFloat(document.getElementById('mp-interestRate').value) || 0;
+        var years = parseInt(document.getElementById('mp-loanTerm').value) || 30;
+        var annualTax = parseFloat(document.getElementById('mp-propertyTax').value) || 0;
+        var annualIns = parseFloat(document.getElementById('mp-insurance').value) || 0;
+        var hoa = parseFloat(document.getElementById('mp-hoa').value) || 0;
+        var pmi = parseFloat(document.getElementById('mp-pmi').value) || 0;
+
+        var principal = homePrice - downPayment;
+        var r = rate / 100 / 12;
+        var n = years * 12;
+        var pi;
+
+        if (r === 0) {
+            pi = principal / n;
+        } else {
+            pi = principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        }
+
+        var monthlyTax = annualTax / 12;
+        var monthlyIns = annualIns / 12;
+        var total = pi + monthlyTax + monthlyIns + hoa + pmi;
+
+        var results = document.getElementById('mp-results');
+        results.classList.add('show');
+        document.getElementById('mp-total').textContent = fmt(total);
+        document.getElementById('mp-pi').textContent = fmt(pi);
+        document.getElementById('mp-tax').textContent = fmt(monthlyTax);
+        document.getElementById('mp-ins').textContent = fmt(monthlyIns);
+        document.getElementById('mp-hoa-res').textContent = fmt(hoa);
+        document.getElementById('mp-pmi-res').textContent = fmt(pmi);
+
+        // Amortization
+        showAmortization(principal, r, n, pi);
+    }
+
+    function showAmortization(principal, r, n, pi) {
+        var section = document.getElementById('amort-section');
+        var tbody = document.getElementById('amort-body');
+        tbody.innerHTML = '';
+        section.style.display = 'block';
+
+        var balance = principal;
+        for (var year = 1; year <= Math.ceil(n / 12); year++) {
+            var yearInterest = 0;
+            var yearPrincipal = 0;
+            for (var m = 0; m < 12 && balance > 0; m++) {
+                var interestPayment = balance * r;
+                var principalPayment = pi - interestPayment;
+                if (principalPayment > balance) principalPayment = balance;
+                yearInterest += interestPayment;
+                yearPrincipal += principalPayment;
+                balance -= principalPayment;
+            }
+            if (balance < 0) balance = 0;
+            var row = tbody.insertRow();
+            row.innerHTML = '<td>' + year + '</td><td>' + fmt(yearInterest) + '</td><td>' + fmt(yearPrincipal) + '</td><td>' + fmt(balance) + '</td>';
+            if (balance === 0) break;
+        }
+    }
+
+    // ===== Qualification Calculation =====
+    function calcQualification() {
+        var income = parseFloat(document.getElementById('q-annualIncome').value) || 0;
+        var debt = parseFloat(document.getElementById('q-monthlyDebt').value) || 0;
+        var downPayment = parseFloat(document.getElementById('q-downPayment').value) || 0;
+        var rate = parseFloat(document.getElementById('q-interestRate').value) || 0;
+        var years = parseInt(document.getElementById('q-loanTerm').value) || 30;
+        var annualTax = parseFloat(document.getElementById('q-propertyTax').value) || 0;
+        var annualIns = parseFloat(document.getElementById('q-insurance').value) || 0;
+
+        var monthlyIncome = income / 12;
+        var maxHousingPayment = monthlyIncome * 0.28;
+        var maxTotalDebt = monthlyIncome * 0.36;
+        var availableForMortgage = Math.min(maxHousingPayment, maxTotalDebt - debt);
+
+        if (availableForMortgage < 0) availableForMortgage = 0;
+
+        var r = rate / 100 / 12;
+        var n = years * 12;
+        var loanAmount;
+
+        if (r === 0) {
+            loanAmount = availableForMortgage * n;
+        } else {
+            loanAmount = availableForMortgage * (Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n));
+        }
+
+        var maxHomePrice = loanAmount + downPayment;
+        var monthlyTax = annualTax / 12;
+        var monthlyIns = annualIns / 12;
+        var totalMonthly = availableForMortgage + monthlyTax + monthlyIns;
+
+        var pi;
+        if (r === 0) {
+            pi = loanAmount / n;
+        } else {
+            pi = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        }
+
+        var dti = income > 0 ? ((totalMonthly) / monthlyIncome * 100) : 0;
+
+        var results = document.getElementById('q-results');
+        results.classList.add('show');
+        document.getElementById('q-maxHomePrice').textContent = fmt(maxHomePrice);
+        document.getElementById('q-loanAmount').textContent = fmt(loanAmount);
+        document.getElementById('q-monthlyPI').textContent = fmt(pi);
+        document.getElementById('q-totalMonthly').textContent = fmt(totalMonthly);
+        document.getElementById('q-dti').textContent = dti.toFixed(1) + '%';
+    }
+
+    // ===== Refinance Calculation =====
+    function calcRefinance() {
+        var balance = parseFloat(document.getElementById('r-currentBalance').value) || 0;
+        var currentRate = parseFloat(document.getElementById('r-currentRate').value) || 0;
+        var currentYears = parseInt(document.getElementById('r-currentTerm').value) || 30;
+        var currentMonthly = parseFloat(document.getElementById('r-currentMonthly').value) || 0;
+        var newRate = parseFloat(document.getElementById('r-newRate').value) || 0;
+        var newYears = parseInt(document.getElementById('r-newTerm').value) || 30;
+        var closingCosts = parseFloat(document.getElementById('r-closingCosts').value) || 0;
+        var extraPayment = parseFloat(document.getElementById('r-extraPayment').value) || 0;
+
+        var rOld = currentRate / 100 / 12;
+        var nOld = currentYears * 12;
+        var rNew = newRate / 100 / 12;
+        var nNew = newYears * 12;
+
+        var oldPI;
+        if (rOld === 0) {
+            oldPI = balance / nOld;
+        } else {
+            oldPI = balance * (rOld * Math.pow(1 + rOld, nOld)) / (Math.pow(1 + rOld, nOld) - 1);
+        }
+
+        var newPI;
+        if (rNew === 0) {
+            newPI = balance / nNew;
+        } else {
+            newPI = balance * (rNew * Math.pow(1 + rNew, nNew)) / (Math.pow(1 + rNew, nNew) - 1);
+        }
+
+        var monthlySavings = oldPI - newPI;
+
+        // Break-even
+        var breakevenMonths = monthlySavings > 0 ? Math.ceil(closingCosts / monthlySavings) : 0;
+
+        // Total interest
+        var oldTotalInterest = (oldPI * nOld) - balance;
+        var newTotalInterest = (newPI * nNew) - balance;
+        var totalSavings = oldTotalInterest - newTotalInterest;
+
+        var results = document.getElementById('r-results');
+        results.classList.add('show');
+        document.getElementById('r-oldPayment').textContent = fmt(oldPI);
+        document.getElementById('r-newPayment').textContent = fmt(newPI);
+        document.getElementById('r-monthlySavings').textContent = fmt(monthlySavings);
+        document.getElementById('r-totalSavings').textContent = fmt(totalSavings);
+        document.getElementById('r-breakeven').textContent = breakevenMonths + ' months';
+        document.getElementById('r-oldInterest').textContent = fmt(oldTotalInterest);
+        document.getElementById('r-newInterest').textContent = fmt(newTotalInterest);
+    }
+
+    // ===== Cash-Out Refinance Calculation =====
+    function calcCashout() {
+        var homeValue = parseFloat(document.getElementById('c-homeValue').value) || 0;
+        var currentBalance = parseFloat(document.getElementById('c-currentBalance').value) || 0;
+        var currentRate = parseFloat(document.getElementById('c-currentRate').value) || 0;
+        var newRate = parseFloat(document.getElementById('c-newRate').value) || 0;
+        var newYears = parseInt(document.getElementById('c-newTerm').value) || 30;
+        var maxLTV = parseFloat(document.getElementById('c-maxLTV').value) || 0.80;
+        var closingCostsPct = parseFloat(document.getElementById('c-closingCostsPct').value) || 0;
+
+        var equity = homeValue - currentBalance;
+        var maxLoan = homeValue * maxLTV;
+        var closingCosts = maxLoan * (closingCostsPct / 100);
+        var cashAvailable = maxLoan - currentBalance - closingCosts;
+        if (cashAvailable < 0) cashAvailable = 0;
+
+        var rNew = newRate / 100 / 12;
+        var nNew = newYears * 12;
+        var newPI;
+        if (rNew === 0) {
+            newPI = maxLoan / nNew;
+        } else {
+            newPI = maxLoan * (rNew * Math.pow(1 + rNew, nNew)) / (Math.pow(1 + rNew, nNew) - 1);
+        }
+
+        var rOld = currentRate / 100 / 12;
+        var nOld = 30 * 12; // assume 30yr for current
+        var oldPI;
+        if (rOld === 0) {
+            oldPI = currentBalance / nOld;
+        } else {
+            oldPI = currentBalance * (rOld * Math.pow(1 + rOld, nOld)) / (Math.pow(1 + rOld, nOld) - 1);
+        }
+
+        var paymentChange = newPI - oldPI;
+
+        var results = document.getElementById('c-results');
+        results.classList.add('show');
+        document.getElementById('c-equity').textContent = fmt(equity);
+        document.getElementById('c-maxLoan').textContent = fmt(maxLoan);
+        document.getElementById('c-closingCosts').textContent = fmt(closingCosts);
+        document.getElementById('c-cashAvailable').textContent = fmt(cashAvailable);
+        document.getElementById('c-newPayment').textContent = fmt(newPI);
+        document.getElementById('c-oldPayment').textContent = fmt(oldPI);
+        document.getElementById('c-paymentChange').textContent = fmt(paymentChange);
+        document.getElementById('c-ltv-display').textContent = Math.round(maxLTV * 100) + '%';
+    }
+
+    // ===== Auto-calculate on input change =====
+    document.addEventListener('DOMContentLoaded', function() {
+        // Monthly Payment
+        var mpInputs = ['mp-homePrice','mp-downPayment','mp-interestRate','mp-loanTerm','mp-propertyTax','mp-insurance','mp-hoa','mp-pmi'];
+        mpInputs.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener('input', calcMonthly);
+        });
+
+        // Qualification
+        var qInputs = ['q-annualIncome','q-monthlyDebt','q-downPayment','q-interestRate','q-loanTerm','q-propertyTax','q-insurance'];
+        qInputs.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener('input', calcQualification);
+        });
+
+        // Refinance
+        var rInputs = ['r-currentBalance','r-currentRate','r-currentTerm','r-currentMonthly','r-newRate','r-newTerm','r-closingCosts','r-extraPayment'];
+        rInputs.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener('input', calcRefinance);
+        });
+
+        // Cash-out
+        var cInputs = ['c-homeValue','c-currentBalance','c-currentRate','c-newRate','c-newTerm','c-maxLTV','c-closingCostsPct'];
+        cInputs.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener('input', calcCashout);
+        });
+    });
+    </script>
+</body>
+</html>
