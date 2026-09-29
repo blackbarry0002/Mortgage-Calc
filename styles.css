@@ -1,17 +1,17 @@
-/* ===== Mortgage Calculator — Wells Fargo-Inspired Design ===== */
+/* ===== WF - Free Mortgage Calculator ===== */
 
 /* Reset & Base */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 body {
-    font-family: "Wells Fargo Sans", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #333;
     line-height: 1.5;
     background: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-a { color: #0076a8; text-decoration: none; }
+a { color: #1a56db; text-decoration: none; }
 a:hover { text-decoration: underline; }
 img { max-width: 100%; height: auto; }
 button { font-family: inherit; cursor: pointer; }
@@ -26,7 +26,7 @@ button { font-family: inherit; cursor: pointer; }
     position: static; width: auto; height: auto;
     padding: 8px 16px; margin: 0; overflow: visible;
     clip: auto; white-space: normal;
-    background: #d71e28; color: #fff; z-index: 9999;
+    background: #1a56db; color: #fff; z-index: 9999;
 }
 
 /* Header */
@@ -42,7 +42,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .header-logo a { display: flex; align-items: center; text-decoration: none; }
 .header-logo-text {
-    font-size: 24px; font-weight: 700; color: #d71e28;
+    font-size: 24px; font-weight: 700; color: #1a56db;
     letter-spacing: -0.5px; font-family: Georgia, "Times New Roman", serif;
 }
 .header-nav { display: flex; align-items: center; gap: 28px; }
@@ -50,38 +50,13 @@ button { font-family: inherit; cursor: pointer; }
     color: #333; font-size: 14px; font-weight: 400;
     text-decoration: none; transition: color 0.15s;
 }
-.header-nav a:hover { color: #d71e28; }
-.header-nav .search-icon {
-    display: flex; align-items: center; justify-content: center;
-    width: 32px; height: 32px; color: #555;
-}
-.header-nav .search-icon:hover { color: #d71e28; }
-.btn-signon {
-    background: #d71e28; color: #fff !important;
-    padding: 8px 20px; border-radius: 4px;
-    font-weight: 600 !important; font-size: 14px;
-    transition: background 0.15s; border: none;
-}
-.btn-signon:hover { background: #b81820; }
+.header-nav a:hover { color: #1a56db; }
 .hamburger {
     display: none; flex-direction: column; justify-content: center;
     align-items: center; gap: 5px; width: 40px; height: 40px;
     background: none; border: none; padding: 8px;
 }
 .hamburger span { display: block; width: 22px; height: 2px; background: #333; transition: all 0.3s; }
-
-/* Breadcrumb */
-.breadcrumb { background: #f8f8f8; border-bottom: 1px solid #e8e8e8; }
-.breadcrumb-inner { max-width: 1200px; margin: 0 auto; padding: 10px 24px; }
-.breadcrumb ul {
-    list-style: none; display: flex; align-items: center;
-    flex-wrap: wrap; gap: 6px; font-size: 13px;
-}
-.breadcrumb li { display: flex; align-items: center; gap: 6px; }
-.breadcrumb a { color: #555; text-decoration: none; }
-.breadcrumb a:hover { color: #d71e28; }
-.breadcrumb .sep { color: #999; font-size: 14px; }
-.breadcrumb .current { color: #333; font-weight: 600; }
 
 /* Page Title */
 .page-title { text-align: center; padding: 40px 24px 16px; }
@@ -92,7 +67,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* Section Title */
 .section-title { text-align: center; padding: 0 24px 32px; }
-.section-title-bar { width: 60px; height: 4px; background: #d71e28; margin: 0 auto 16px; border-radius: 2px; }
+.section-title-bar { width: 60px; height: 4px; background: #1a56db; margin: 0 auto 16px; border-radius: 2px; }
 .section-title h2 { font-size: 28px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.3px; }
 
 /* Calculator Cards */
@@ -101,20 +76,20 @@ button { font-family: inherit; cursor: pointer; }
 .calc-card {
     background: #fff; border: 1px solid #e0e0e0; border-radius: 8px;
     padding: 32px 24px; text-align: center; display: flex; flex-direction: column;
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
 }
-.calc-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.calc-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.1); transform: translateY(-3px); border-color: #1a56db; }
 .calc-card-title { font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px; line-height: 1.3; }
 .calc-card-desc { font-size: 14px; color: #555; margin-bottom: 16px; line-height: 1.6; }
 .calc-card-use { font-size: 14px; color: #555; margin-bottom: 24px; flex-grow: 1; }
 .calc-card-use strong { display: block; font-weight: 700; color: #333; margin-bottom: 4px; }
 .calc-card .btn-primary {
-    display: inline-block; background: #d71e28; color: #fff !important;
+    display: inline-block; background: #1a56db; color: #fff !important;
     padding: 12px 24px; border-radius: 4px; font-size: 15px;
     font-weight: 600; text-decoration: none !important;
     transition: background 0.15s; border: none; text-align: center;
 }
-.calc-card .btn-primary:hover { background: #b81820; }
+.calc-card .btn-primary:hover { background: #1e40af; }
 
 /* Divider */
 .divider { height: 1px; background: #e0e0e0; margin: 0; }
@@ -129,24 +104,7 @@ button { font-family: inherit; cursor: pointer; }
 .calc-panel h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
 .calc-panel .panel-subtitle { font-size: 14px; color: #555; margin-bottom: 24px; }
 
-/* Enhanced Results */
-.results {
-    margin-top: 24px; padding: 24px; background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
-    border-left: 4px solid #d71e28; border-radius: 8px; display: none;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
-}
-.results.show { display: block; }
-.results h3 { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; }
-.result-item {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 10px 0; border-bottom: 1px solid #e0e0e0;
-}
-.result-item:last-child { border-bottom: none; }
-.result-label { font-size: 14px; color: #555; }
-.result-value { font-size: 15px; font-weight: 700; color: #1a1a1a; }
-.result-highlight { font-size: 36px; font-weight: 700; color: #d71e28; text-align: center; margin: 20px 0; letter-spacing: -0.5px; }
-
-/* Tab Navigation Enhancement */
+/* Tab Navigation */
 .tab-nav {
     display: flex; gap: 0; margin-bottom: 24px;
     border-bottom: 2px solid #e0e0e0; max-width: 720px;
@@ -163,70 +121,44 @@ button { font-family: inherit; cursor: pointer; }
     white-space: nowrap; flex-shrink: 0;
 }
 .tab-btn:hover { color: #1a1a1a; }
-.tab-btn.active { color: #d71e28; border-bottom-color: #d71e28; }
-
-/* Card Enhancements */
-.calc-card {
-    background: #fff; border: 1px solid #e0e0e0; border-radius: 8px;
-    padding: 32px 24px; text-align: center; display: flex; flex-direction: column;
-    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
-}
-.calc-card:hover {
-    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-    transform: translateY(-3px);
-    border-color: #d71e28;
-}
-
-/* Tab Navigation */
-.tab-nav {
-    display: flex; gap: 0; margin-bottom: 24px;
-    border-bottom: 2px solid #e0e0e0; max-width: 720px;
-    margin-left: auto; margin-right: auto;
-    overflow-x: auto; -webkit-overflow-scrolling: touch;
-}
-.tab-btn {
-    padding: 12px 20px; background: none; border: none;
-    font-size: 14px; font-weight: 600; color: #666;
-    cursor: pointer; border-bottom: 3px solid transparent;
-    margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;
-    white-space: nowrap; flex-shrink: 0;
-}
-.tab-btn:hover { color: #1a1a1a; }
-.tab-btn.active { color: #d71e28; border-bottom-color: #d71e28; }
+.tab-btn.active { color: #1a56db; border-bottom-color: #1a56db; }
 
 /* Form Styles */
 .form-row { display: flex; gap: 16px; margin-bottom: 16px; }
 .form-group { flex: 1; min-width: 0; }
 .form-group label { display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 6px; }
-.form-group label .required { color: #d71e28; }
+.form-group label .required { color: #1a56db; }
 .form-group input,
 .form-group select {
     width: 100%; padding: 10px 12px; border: 1px solid #ccc;
     border-radius: 4px; font-size: 15px; font-family: inherit;
     transition: border-color 0.15s, box-shadow 0.15s; background: #fff;
 }
+.form-group input:hover,
+.form-group select:hover { border-color: #999; }
 .form-group input:focus,
 .form-group select:focus {
-    outline: none; border-color: #0076a8;
-    box-shadow: 0 0 0 3px rgba(0,118,168,0.1);
+    outline: none; border-color: #1a56db;
+    box-shadow: 0 0 0 3px rgba(26,86,219,0.1);
 }
 .form-group .hint { font-size: 12px; color: #888; margin-top: 4px; }
 
 /* Results */
 .results {
-    margin-top: 24px; padding: 20px; background: #f8f9fa;
-    border-left: 4px solid #d71e28; border-radius: 4px; display: none;
+    margin-top: 24px; padding: 24px; background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
+    border-left: 4px solid #1a56db; border-radius: 8px; display: none;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
 }
 .results.show { display: block; }
 .results h3 { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; }
 .result-item {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 8px 0; border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0; border-bottom: 1px solid #e0e0e0;
 }
 .result-item:last-child { border-bottom: none; }
 .result-label { font-size: 14px; color: #555; }
 .result-value { font-size: 15px; font-weight: 700; color: #1a1a1a; }
-.result-highlight { font-size: 32px; font-weight: 700; color: #d71e28; text-align: center; margin: 16px 0; }
+.result-highlight { font-size: 36px; font-weight: 700; color: #1a56db; text-align: center; margin: 20px 0; letter-spacing: -0.5px; }
 
 /* Amortization Table */
 .amort-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; }
@@ -245,7 +177,7 @@ button { font-family: inherit; cursor: pointer; }
     cursor: pointer; display: flex; justify-content: space-between; align-items: center;
     user-select: none; transition: color 0.15s;
 }
-.faq-question:hover { color: #d71e28; }
+.faq-question:hover { color: #1a56db; }
 .faq-question::after { content: "+"; font-size: 22px; color: #999; font-weight: 400; transition: transform 0.2s; }
 .faq-item.open .faq-question::after { content: "\2212"; }
 .faq-answer {
@@ -256,14 +188,17 @@ button { font-family: inherit; cursor: pointer; }
 .faq-item.open .faq-answer { padding: 0 0 18px; max-height: 500px; }
 
 /* Footer */
-.footer { background: #1a1a1a; color: #ccc; padding: 40px 24px 24px; font-size: 13px; }
+.footer { background: #1e293b; color: #ccc; padding: 40px 24px 24px; font-size: 13px; }
 .footer-inner { max-width: 1200px; margin: 0 auto; }
 .footer-contact { margin-bottom: 24px; }
 .footer-contact h3 { color: #fff; font-size: 16px; margin-bottom: 8px; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 24px; }
 .footer-links a { color: #fff; text-decoration: none; font-size: 13px; }
 .footer-links a:hover { text-decoration: underline; }
-.footer-legal { border-top: 1px solid #333; padding-top: 16px; color: #888; font-size: 12px; line-height: 1.6; }
+.footer-social { margin-bottom: 24px; }
+.footer-social a { color: #fff; margin-right: 16px; }
+.footer-social a:hover { color: #60a5fa; }
+.footer-legal { border-top: 1px solid #334155; padding-top: 16px; color: #94a3b8; font-size: 12px; line-height: 1.6; }
 
 /* Disclaimer */
 .disclaimer { font-size: 12px; color: #999; margin-top: 16px; font-style: italic; line-height: 1.5; }
@@ -304,7 +239,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* Print Styles */
 @media print {
-    .header, .breadcrumb, .tab-nav, .footer, .hamburger { display: none; }
+    .header, .tab-nav, .footer, .hamburger { display: none; }
     .calc-panel { display: block !important; border: none; padding: 0; }
     .cards-section { display: none; }
 }

@@ -1,3 +1,5 @@
+// ===== WF - Free Mortgage Calculator =====
+
 // ===== Mobile Nav Toggle =====
 function toggleMobileNav() {
     var nav = document.querySelector('.header-nav');
