@@ -320,39 +320,50 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 1024px) {
     .cards-grid { grid-template-columns: repeat(2, 1fr); }
     .header-nav { gap: var(--space-16); }
+    .hero h1 { font-size: 36px; }
+    .hero p { font-size: 13px; }
+    .section-title h2 { font-size: 28px; }
+    .calc-card-title { font-size: 28px; }
+    .result-highlight { font-size: 36px; }
 }
 
 /* Responsive: Mobile */
 @media (max-width: 768px) {
     .header-inner { padding: 0 var(--space-16); height: 56px; }
-    .header-logo-text { font-size: 32px; }
+    .header-logo-text { font-size: 28px; }
     .header-nav { display: none; }
     .hamburger { display: flex; }
-    .hero { padding: 56px var(--space-16); }
-    .hero h1 { font-size: 32px; }
+    .hero { padding: 48px var(--space-16); }
+    .hero h1 { font-size: 28px; }
     .hero p { font-size: 13px; }
-    .hero-features { gap: var(--space-16); }
+    .hero-features { gap: var(--space-16); flex-direction: column; align-items: center; }
     .hero-feature { font-size: 12px; }
     .page-title { padding: 32px var(--space-16) var(--space-12); }
-    .page-title h1 { font-size: 32px; }
+    .page-title h1 { font-size: 28px; }
     .subheadline { padding: 0 var(--space-16) 32px; font-size: 13px; }
     .section-title { padding: 0 var(--space-16) var(--space-16); }
     .section-title h2 { font-size: 24px; }
     .cards-section { padding: 0 var(--space-16) 40px; }
     .cards-grid { grid-template-columns: 1fr; gap: var(--space-16); }
     .calc-card { padding: var(--space-16) var(--space-16); }
+    .calc-card-title { font-size: 24px; }
     .calc-panel { padding: var(--space-16) var(--space-16); margin: 0 var(--space-16); }
     .form-row { flex-direction: column; gap: 0; }
     .tab-nav { margin: 0 var(--space-16) var(--space-16); }
     .faq-section { padding: 40px var(--space-16); }
     .footer { padding: 32px var(--space-16) var(--space-16); }
+    .footer-links { flex-direction: column; gap: var(--space-8); }
 }
 
 /* Responsive: Small Mobile */
 @media (max-width: 480px) {
     .page-title h1 { font-size: 24px; }
     .section-title h2 { font-size: 22px; }
-    .result-highlight { font-size: 32px; }
+    .result-highlight { font-size: 28px; }
+    .hero h1 { font-size: 24px; }
+    .hero p { font-size: 12px; }
+    .calc-card-title { font-size: 20px; }
+    .header-logo-text { font-size: 24px; }
 }
 
 /* Print Styles */
