@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WF - Free Mortgage Calculator | Calculate Monthly Payments & Affordability</title>
     <meta name="description" content="Free mortgage calculators - estimate monthly payments, affordability, refinance savings, and more.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%231a56db' width='100' height='100' rx='10'/><text x='50' y='70' font-size='60' font-weight='bold' fill='white' text-anchor='middle'>WF</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23D71E28' width='100' height='100' rx='10'/><text x='50' y='70' font-size='60' font-weight='300' fill='%23FFCD41' text-anchor='middle'>WF</text></svg>">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -54,286 +54,7 @@
         ]
     }
     </script>
-    <style>
-        /* ===== Reset & Base ===== */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { font-size: 16px; -webkit-text-size-adjust: 100%; }
-        body {
-            font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
-            color: #333;
-            line-height: 1.5;
-            background: #fff;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        a { color: #1a56db; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        img { max-width: 100%; height: auto; }
-        button { font-family: inherit; cursor: pointer; }
-
-        /* ===== Skip Link ===== */
-        .skip-link {
-            position: absolute; width: 1px; height: 1px;
-            padding: 0; margin: -1px; overflow: hidden;
-            clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-        }
-        .skip-link:focus {
-            position: static; width: auto; height: auto;
-            padding: 8px 16px; margin: 0; overflow: visible;
-            clip: auto; white-space: normal;
-            background: #1a56db; color: #fff; z-index: 9999;
-        }
-
-        /* ===== Header ===== */
-        .header {
-            background: #fff; border-bottom: 1px solid #e0e0e0;
-            position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }
-        .header-inner {
-            max-width: 1200px; margin: 0 auto;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 24px; height: 60px;
-        }
-        .header-logo a { display: flex; align-items: center; text-decoration: none; }
-        .header-logo-text {
-            font-size: 24px; font-weight: 700; color: #1a56db;
-            letter-spacing: -0.5px; font-family: Georgia, "Times New Roman", serif;
-        }
-        .header-nav { display: flex; align-items: center; gap: 28px; }
-        .header-nav a {
-            color: #333; font-size: 14px; font-weight: 400;
-            text-decoration: none; transition: color 0.15s;
-        }
-        .header-nav a:hover { color: #1a56db; }
-        .hamburger {
-            display: none; flex-direction: column; justify-content: center;
-            align-items: center; gap: 5px; width: 40px; height: 40px;
-            background: none; border: none; padding: 8px;
-        }
-        .hamburger span { display: block; width: 22px; height: 2px; background: #333; transition: all 0.3s; }
-
-        /* ===== Hero Section ===== */
-        .hero {
-            position: relative;
-            background: linear-gradient(135deg, #1e3a5f 0%, #1a56db 50%, #0e9f6e 100%);
-            color: #fff;
-            padding: 80px 24px;
-            text-align: center;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-        .hero-content { position: relative; max-width: 800px; margin: 0 auto; }
-        .hero h1 { font-size: 48px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; line-height: 1.2; }
-        .hero p { font-size: 20px; color: rgba(255,255,255,0.85); margin-bottom: 32px; line-height: 1.6; }
-        .hero-btn {
-            display: inline-block; background: #fff; color: #1a56db !important;
-            padding: 16px 40px; border-radius: 4px; font-size: 17px;
-            font-weight: 600; text-decoration: none !important;
-            transition: background 0.15s, transform 0.15s;
-            border: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-        }
-        .hero-btn:hover { background: #f0f4ff; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
-        .hero-features { display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap; }
-        .hero-feature { display: flex; align-items: center; gap: 8px; font-size: 14px; color: rgba(255,255,255,0.8); }
-        .hero-feature svg { width: 20px; height: 20px; color: #fbbf24; }
-
-        /* ===== Page Title ===== */
-        .page-title { text-align: center; padding: 40px 24px 16px; }
-        .page-title h1 { font-size: 36px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.5px; }
-
-        /* ===== Subheadline ===== */
-        .subheadline { text-align: center; padding: 0 24px 40px; font-size: 18px; color: #555; max-width: 640px; margin: 0 auto; }
-
-        /* ===== Section Title ===== */
-        .section-title { text-align: center; padding: 0 24px 32px; }
-        .section-title-bar { width: 60px; height: 4px; background: #1a56db; margin: 0 auto 16px; border-radius: 2px; }
-        .section-title h2 { font-size: 28px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.3px; }
-
-        /* ===== Calculator Cards ===== */
-        .cards-section { padding: 0 24px 48px; }
-        .cards-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .calc-card {
-            background: #fff; border: 1px solid #e0e0e0; border-radius: 8px;
-            padding: 32px 24px; text-align: center; display: flex; flex-direction: column;
-            transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
-        }
-        .calc-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.1); transform: translateY(-3px); border-color: #1a56db; }
-        .calc-card-title { font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px; line-height: 1.3; }
-        .calc-card-desc { font-size: 14px; color: #555; margin-bottom: 16px; line-height: 1.6; }
-        .calc-card-use { font-size: 14px; color: #555; margin-bottom: 24px; flex-grow: 1; }
-        .calc-card-use strong { display: block; font-weight: 700; color: #333; margin-bottom: 4px; }
-        .calc-card .btn-primary {
-            display: inline-block; background: #1a56db; color: #fff !important;
-            padding: 12px 24px; border-radius: 4px; font-size: 15px;
-            font-weight: 600; text-decoration: none !important;
-            transition: background 0.15s; border: none; text-align: center;
-        }
-        .calc-card .btn-primary:hover { background: #1e40af; }
-
-        /* ===== Divider ===== */
-        .divider { height: 1px; background: #e0e0e0; margin: 0; }
-
-        /* ===== Calculator Panel ===== */
-        .calc-panel {
-            display: none; max-width: 720px; margin: 0 auto; padding: 32px;
-            background: #fff; border: 1px solid #e0e0e0; border-radius: 8px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-        }
-        .calc-panel.active { display: block; }
-        .calc-panel h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
-        .calc-panel .panel-subtitle { font-size: 14px; color: #555; margin-bottom: 24px; }
-
-        /* ===== Tab Navigation ===== */
-        .tab-nav {
-            display: flex; gap: 0; margin-bottom: 24px;
-            border-bottom: 2px solid #e0e0e0; max-width: 720px;
-            margin-left: auto; margin-right: auto;
-            overflow-x: auto; -webkit-overflow-scrolling: touch;
-            background: #fff; border-radius: 8px 8px 0 0;
-            padding: 0 8px;
-        }
-        .tab-btn {
-            padding: 14px 24px; background: none; border: none;
-            font-size: 14px; font-weight: 600; color: #666;
-            cursor: pointer; border-bottom: 3px solid transparent;
-            margin-bottom: -2px; transition: color 0.15s, border-color 0.15s;
-            white-space: nowrap; flex-shrink: 0;
-        }
-        .tab-btn:hover { color: #1a1a1a; }
-        .tab-btn.active { color: #1a56db; border-bottom-color: #1a56db; }
-
-        /* ===== Form Styles ===== */
-        .form-row { display: flex; gap: 16px; margin-bottom: 16px; }
-        .form-group { flex: 1; min-width: 0; }
-        .form-group label { display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 6px; }
-        .form-group label .required { color: #1a56db; }
-        .form-group input,
-        .form-group select {
-            width: 100%; padding: 10px 12px; border: 1px solid #ccc;
-            border-radius: 4px; font-size: 15px; font-family: inherit;
-            transition: border-color 0.15s, box-shadow 0.15s; background: #fff;
-        }
-        .form-group input:hover,
-        .form-group select:hover { border-color: #999; }
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none; border-color: #1a56db;
-            box-shadow: 0 0 0 3px rgba(26,86,219,0.1);
-        }
-        .form-group .hint { font-size: 12px; color: #888; margin-top: 4px; }
-
-        /* ===== Results ===== */
-        .results {
-            margin-top: 24px; padding: 24px; background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
-            border-left: 4px solid #1a56db; border-radius: 8px; display: none;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
-        }
-        .results.show { display: block; }
-        .results h3 { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; }
-        .result-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 0; border-bottom: 1px solid #e0e0e0;
-        }
-        .result-item:last-child { border-bottom: none; }
-        .result-label { font-size: 14px; color: #555; }
-        .result-value { font-size: 15px; font-weight: 700; color: #1a1a1a; }
-        .result-highlight { font-size: 36px; font-weight: 700; color: #1a56db; text-align: center; margin: 20px 0; letter-spacing: -0.5px; }
-
-        /* ===== Amortization Table ===== */
-        .amort-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; }
-        .amort-table th { background: #f5f5f5; padding: 8px 10px; text-align: right; border-bottom: 2px solid #ddd; font-weight: 600; }
-        .amort-table th:first-child { text-align: left; }
-        .amort-table td { padding: 6px 10px; border-bottom: 1px solid #e0e0e0; text-align: right; }
-        .amort-table td:first-child { text-align: left; }
-        .amort-table tr:nth-child(even) { background: #fafafa; }
-        .amort-table-wrapper { max-height: 400px; overflow-y: auto; border: 1px solid #ddd; border-radius: 4px; }
-
-        /* ===== FAQ Section ===== */
-        .faq-section { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
-        .faq-item { border-bottom: 1px solid #e0e0e0; }
-        .faq-question {
-            padding: 18px 0; font-size: 16px; font-weight: 600; color: #1a1a1a;
-            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-            user-select: none; transition: color 0.15s;
-        }
-        .faq-question:hover { color: #1a56db; }
-        .faq-question::after { content: "+"; font-size: 22px; color: #999; font-weight: 400; transition: transform 0.2s; }
-        .faq-item.open .faq-question::after { content: "\2212"; }
-        .faq-answer {
-            padding: 0; max-height: 0; overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            font-size: 14px; color: #555; line-height: 1.7;
-        }
-        .faq-item.open .faq-answer { padding: 0 0 18px; max-height: 500px; }
-
-        /* ===== Footer ===== */
-        .footer { background: #1e293b; color: #ccc; padding: 40px 24px 24px; font-size: 13px; }
-        .footer-inner { max-width: 1200px; margin: 0 auto; }
-        .footer-contact { margin-bottom: 24px; }
-        .footer-contact h3 { color: #fff; font-size: 16px; margin-bottom: 8px; }
-        .footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 24px; }
-        .footer-links a { color: #fff; text-decoration: none; font-size: 13px; }
-        .footer-links a:hover { text-decoration: underline; }
-        .footer-social { margin-bottom: 24px; }
-        .footer-social a { color: #fff; margin-right: 16px; }
-        .footer-social a:hover { color: #60a5fa; }
-        .footer-legal { border-top: 1px solid #334155; padding-top: 16px; color: #94a3b8; font-size: 12px; line-height: 1.6; }
-
-        /* ===== Disclaimer ===== */
-        .disclaimer { font-size: 12px; color: #999; margin-top: 16px; font-style: italic; line-height: 1.5; }
-
-        /* ===== Responsive: Tablet ===== */
-        @media (max-width: 1024px) {
-            .cards-grid { grid-template-columns: repeat(2, 1fr); }
-            .header-nav { gap: 20px; }
-        }
-
-        /* ===== Responsive: Mobile ===== */
-        @media (max-width: 768px) {
-            .header-inner { padding: 0 16px; height: 56px; }
-            .header-logo-text { font-size: 20px; }
-            .header-nav { display: none; }
-            .hamburger { display: flex; }
-            .hero { padding: 56px 16px; }
-            .hero h1 { font-size: 32px; }
-            .hero p { font-size: 16px; }
-            .hero-features { gap: 20px; }
-            .hero-feature { font-size: 13px; }
-            .page-title { padding: 32px 16px 12px; }
-            .page-title h1 { font-size: 28px; }
-            .subheadline { padding: 0 16px 32px; font-size: 16px; }
-            .section-title { padding: 0 16px 24px; }
-            .section-title h2 { font-size: 24px; }
-            .cards-section { padding: 0 16px 40px; }
-            .cards-grid { grid-template-columns: 1fr; gap: 16px; }
-            .calc-card { padding: 24px 20px; }
-            .calc-panel { padding: 24px 20px; margin: 0 16px; }
-            .form-row { flex-direction: column; gap: 0; }
-            .tab-nav { margin: 0 16px 24px; }
-            .faq-section { padding: 40px 16px; }
-            .footer { padding: 32px 16px 20px; }
-        }
-
-        /* ===== Responsive: Small Mobile ===== */
-        @media (max-width: 480px) {
-            .page-title h1 { font-size: 24px; }
-            .section-title h2 { font-size: 22px; }
-            .result-highlight { font-size: 28px; }
-        }
-
-        /* ===== Print Styles ===== */
-        @media print {
-            .header, .tab-nav, .footer, .hamburger { display: none; }
-            .calc-panel { display: block !important; border: none; padding: 0; }
-            .cards-section { display: none; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -447,17 +168,17 @@
             </div>
             <div class="cards-grid" style="max-width:900px;">
                 <div class="calc-card" style="text-align:center;">
-                    <div style="width:48px; height:48px; background:#1a56db; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; color:#fff; font-size:20px; font-weight:700;">1</div>
+                    <div style="width:48px; height:48px; background:#D71E28; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; color:#fff; font-size:20px; font-weight:600;">1</div>
                     <div class="calc-card-title">Enter Your Details</div>
                     <div class="calc-card-desc">Input your home price, down payment, income, or current loan details — whatever applies to your situation.</div>
                 </div>
                 <div class="calc-card" style="text-align:center;">
-                    <div style="width:48px; height:48px; background:#1a56db; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; color:#fff; font-size:20px; font-weight:700;">2</div>
+                    <div style="width:48px; height:48px; background:#D71E28; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; color:#fff; font-size:20px; font-weight:600;">2</div>
                     <div class="calc-card-title">Get Instant Results</div>
                     <div class="calc-card-desc">Our calculators process your numbers in real-time using industry-standard formulas.</div>
                 </div>
                 <div class="calc-card" style="text-align:center;">
-                    <div style="width:48px; height:48px; background:#1a56db; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; color:#fff; font-size:20px; font-weight:700;">3</div>
+                    <div style="width:48px; height:48px; background:#D71E28; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; color:#fff; font-size:20px; font-weight:600;">3</div>
                     <div class="calc-card-title">Plan With Confidence</div>
                     <div class="calc-card-desc">Use your results to compare scenarios, estimate savings, and make informed decisions.</div>
                 </div>
@@ -471,16 +192,16 @@
                 <h2>Why Trust WF Calculator</h2>
             </div>
             <div class="cards-grid" style="max-width:900px;">
-                <div class="calc-card" style="text-align:center; border-top:3px solid #1a56db;">
-                    <div class="calc-card-title" style="font-size:32px; color:#1a56db;">4</div>
+                <div class="calc-card" style="text-align:center; border-top:3px solid #D71E28;">
+                    <div class="calc-card-title" style="font-size:32px; color:#D71E28;">4</div>
                     <div class="calc-card-desc">Powerful calculators covering every major mortgage scenario</div>
                 </div>
-                <div class="calc-card" style="text-align:center; border-top:3px solid #1a56db;">
-                    <div class="calc-card-title" style="font-size:32px; color:#1a56db;">100%</div>
+                <div class="calc-card" style="text-align:center; border-top:3px solid #D71E28;">
+                    <div class="calc-card-title" style="font-size:32px; color:#D71E28;">100%</div>
                     <div class="calc-card-desc">Free to use — no sign-up, no hidden fees, no obligations</div>
                 </div>
-                <div class="calc-card" style="text-align:center; border-top:3px solid #1a56db;">
-                    <div class="calc-card-title" style="font-size:32px; color:#1a56db;">&lt;1s</div>
+                <div class="calc-card" style="text-align:center; border-top:3px solid #D71E28;">
+                    <div class="calc-card-title" style="font-size:32px; color:#D71E28;">&lt;1s</div>
                     <div class="calc-card-desc">Results calculated instantly with industry-standard formulas</div>
                 </div>
             </div>
@@ -495,11 +216,11 @@
                 <div class="section-title-bar"></div>
                 <h2>Estimate your monthly mortgage payment</h2>
             </div>
-            <p style="text-align:center; font-size:16px; color:#555; max-width:600px; margin:0 auto; padding:0 24px 32px;">Curious how much your monthly mortgage payment may be? Simply fill in the required fields and get an estimate in seconds.</p>
+            <p style="text-align:center; font-size:13px; color:#787070; max-width:600px; margin:0 auto; padding:0 16px 32px;">Curious how much your monthly mortgage payment may be? Simply fill in the required fields and get an estimate in seconds.</p>
         </section>
 
         <!-- Tab Navigation -->
-        <div style="max-width:720px;margin:0 auto;padding:0 24px;">
+        <div style="max-width:720px;margin:0 auto;padding:0 16px;">
             <div class="tab-nav">
                 <button class="tab-btn active" onclick="switchTab('monthly', this)">Monthly Payment</button>
                 <button class="tab-btn" onclick="switchTab('qualification', this)">Qualification</button>
@@ -586,7 +307,7 @@
             </div>
 
             <div id="amort-section" style="display:none; margin-top:24px;">
-                <h3 style="font-size:16px; color:#1a1a1a; margin-bottom:12px;">Amortization Schedule</h3>
+                <h3 style="font-size:32px; color:#141414; margin-bottom:12px;">Amortization Schedule</h3>
                 <div class="amort-table-wrapper">
                     <table class="amort-table" id="amort-table">
                         <thead>
@@ -665,7 +386,7 @@
             <div class="results" id="q-results">
                 <h3>Your Qualification Estimate</h3>
                 <div class="result-highlight" id="q-maxHomePrice">$0</div>
-                <p style="text-align:center; font-size:13px; color:#666; margin-bottom:16px;">Maximum home price you may qualify for</p>
+                <p style="text-align:center; font-size:13px; color:#787070; margin-bottom:16px;">Maximum home price you may qualify for</p>
                 <div class="result-item">
                     <span class="result-label">Loan Amount</span>
                     <span class="result-value" id="q-loanAmount">$0</span>
@@ -692,7 +413,7 @@
             <h2>Refinance Savings Calculator</h2>
             <p class="panel-subtitle">Enter your current loan details and see how much you could save by refinancing.</p>
 
-            <h3 style="font-size:16px; color:#1a1a1a; margin-bottom:12px;">Current Loan</h3>
+            <h3 style="font-size:32px; color:#141414; margin-bottom:12px;">Current Loan</h3>
             <div class="form-row">
                 <div class="form-group">
                     <label>Current Loan Balance <span class="required">*</span></label>
@@ -721,7 +442,7 @@
                 </div>
             </div>
 
-            <h3 style="font-size:16px; color:#1a1a1a; margin: 20px 0 12px;">New Loan</h3>
+            <h3 style="font-size:32px; color:#141414; margin: 20px 0 12px;">New Loan</h3>
             <div class="form-row">
                 <div class="form-group">
                     <label>New Interest Rate (%) <span class="required">*</span></label>
@@ -765,7 +486,7 @@
                     <span class="result-value" id="r-monthlySavings" style="color:#0e9f6e;">$0</span>
                 </div>
                 <div class="result-highlight" id="r-totalSavings">$0</div>
-                <p style="text-align:center; font-size:13px; color:#666; margin-bottom:16px;">Total savings over the life of the loan</p>
+                <p style="text-align:center; font-size:13px; color:#787070; margin-bottom:16px;">Total savings over the life of the loan</p>
                 <div class="result-item">
                     <span class="result-label">Break-even Point</span>
                     <span class="result-value" id="r-breakeven">0 months</span>
@@ -857,7 +578,7 @@
                     <span class="result-value" id="c-closingCosts">$0</span>
                 </div>
                 <div class="result-highlight" id="c-cashAvailable">$0</div>
-                <p style="text-align:center; font-size:13px; color:#666; margin-bottom:16px;">Estimated cash available after paying off current mortgage and closing costs</p>
+                <p style="text-align:center; font-size:13px; color:#787070; margin-bottom:16px;">Estimated cash available after paying off current mortgage and closing costs</p>
                 <div class="result-item">
                     <span class="result-label">New Monthly Payment (P&amp;I)</span>
                     <span class="result-value" id="c-newPayment">$0</span>
@@ -881,7 +602,7 @@
                 <div class="section-title-bar"></div>
                 <h2>The importance of home loan calculators</h2>
             </div>
-            <p style="text-align:center; font-size:16px; color:#555; max-width:600px; margin:0 auto; padding:0 24px;">Before you buy, you can view your estimated home price and monthly payment based on your location, household income, monthly debt, and down payment amount.</p>
+            <p style="text-align:center; font-size:13px; color:#787070; max-width:600px; margin:0 auto; padding:0 16px;">Before you buy, you can view your estimated home price and monthly payment based on your location, household income, monthly debt, and down payment amount.</p>
         </section>
 
         <!-- FAQ Section -->
